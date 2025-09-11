@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizion S.A. - Productora Audiovisual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a2e;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member h4 {
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">VIZION</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a onclick="showPage('home')">Inicio</a></li>
+                    <li><a onclick="showPage('services')">Servicios</a></li>
+                    <li><a onclick="showPage('contact')">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Potenciamos tu Presencia Digital</h1>
+                <p>Productora audiovisual especializada en edición de video, retoque de imágenes y piezas publicitarias que emocionan, informan y convierten.</p>
+                <button class="cta-button" onclick="showPage('contact')">Solicitar Cotización</button>
+            </div>
+        </section>
+
+        <!-- Services Preview -->
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🎬 Edición de Video</h3>
+                        <p>Montaje profesional, transiciones y corrección de color para contenido que impacte.</p>
+                        <div class="price">Desde USD $800</div>
+                    </div>
+                    <div class="service-card">
+                        <h3>📸 Retoque de Imágenes</h3>
+                        <p>Optimización para e-commerce, redes sociales y material corporativo.</p>
+                        <div class="price">Desde USD $300</div>
+                    </div>
+                    <div class="service-card">
+                        <h3>🎨 Motion Graphics</h3>
+                        <p>Animaciones, intros y elementos gráficos que dan vida a tu marca.</p>
+                        <div class="price">Desde USD $600</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Creatividad que Convierte</h2>
+                        <p>Fundada en agosto 2025 en Palermo, Buenos Aires, Vizion S.A. cuenta con un equipo de 13 especialistas comprometidos con la excelencia audiovisual.</p>
+                        <p>Nuestra misión es potenciar la presencia digital de nuestros clientes a través de contenidos que no solo llaman la atención, sino que generan resultados medibles.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <div class="stat-number">13</div>
+                                <div>Especialistas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5</div>
+                                <div>Servicios</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2025</div>
+                                <div>Fundada</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div style="background: linear-gradient(45deg, #ff6b6b, #667eea); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center;">
+                            📹 Estudio de Producción<br>
+                            Guatemala 5501, Palermo<br>
+                            Buenos Aires
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Preview -->
+        <section class="team">
+            <div class="container">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>Equipo Directivo</h4>
+                        <p>CEO, COO y Creative Director</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>Producción</h4>
+                        <p>6 especialistas en video y diseño</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>Operaciones</h4>
+                        <p>4 profesionales de gestión y soporte</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section style="padding: 4rem 0;">
+            <div class="container">
+                <h1 class="section-title">Nuestros Servicios</h1>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🎬 Edición de Video</h3>
+                        <p><strong>Incluye:</strong></p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Montaje profesional</li>
+                            <li>Transiciones cinematográficas</li>
+                            <li>Corrección de color</li>
+                            <li>Sincronización de audio</li>
+                        </ul>
+                        <div class="price">Paquete base: USD $800</div>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>📸 Retoque y Tratamiento de Imágenes</h3>
+                        <p><strong>Incluye:</strong></p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Optimización para e-commerce</li>
+                            <li>Retoque para redes sociales</li>
+                            <li>Material corporativo</li>
+                            <li>Corrección de iluminación</li>
+                        </ul>
+                        <div class="price">Paquete base: USD $300</div>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>🎨 Motion Graphics y Animación</h3>
+                        <p><strong>Incluye:</strong></p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Creación de intros</li>
+                            <li>Lower thirds animados</li>
+                            <li>Elementos gráficos dinámicos</li>
+                            <li>Transiciones personalizadas</li>
+                        </ul>
+                        <div class="price">Paquete base: USD $600</div>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>📺 Spots Publicitarios</h3>
+                        <p><strong>Incluye:</strong></p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Producción completa</li>
+                            <li>Guionización</li>
+                            <li>Postproducción</li>
+                            <li>Optimización para plataformas</li>
+                        </ul>
+                        <div class="price">Paquete base: USD $1,200</div>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>🏢 Branding Audiovisual</h3>
+                        <p><strong>Incluye:</strong></p>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Storytelling corporativo</li>
+                            <li>Presentaciones animadas</li>
+                            <li>Identidad visual en movimiento</li>
+                            <li>Piezas para comunicación interna</li>
+                        </ul>
+                        <div class="price">Paquete base: USD $1,000</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-radius: 10px;">
+                    <h3 style="color: #1a1a2e; margin-bottom: 1rem;">Personalización Disponible</h3>
+                    <p>Todos los paquetes pueden customizarse con:</p>
+                    <ul style="display: inline-block; text-align: left; margin-top: 1rem;">
+                        <li>Horas adicionales de edición</li>
+                        <li>Motion graphics extra</li>
+                        <li>Sesiones fotográficas</li>
+                        <li>Revisiones ilimitadas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section style="padding: 4rem 0;">
+            <div class="container">
+                <h1 class="section-title">Contactanos</h1>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                    <div>
+                        <h3 style="color: #1a1a2e; margin-bottom: 1.5rem;">Información de Contacto</h3>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">📍 Dirección</h4>
+                            <p>Calle Guatemala 5501<br>Palermo, Buenos Aires<br>Argentina</p>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">🏢 Instalaciones</h4>
+                            <ul style="padding-left: 1.5rem;">
+                                <li>Sala de edición con 4 estaciones Mac</li>
+                                <li>Área de diseño con tablets Wacom</li>
+                                <li>Sala de reuniones con panel 4K</li>
+                                <li>Estación de audio profesional</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">⏰ Horarios</h4>
+                            <p>Lunes a Viernes: 9:00 - 18:00<br>
+                            Reuniones de alineación: Lunes 10:00 AM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3 style="color: #1a1a2e; margin-bottom: 1.5rem;">Solicitar Cotización</h3>
+                        
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Nombre Completo *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Empresa</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Servicio de Interés *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Seleccionar servicio...</option>
+                                    <option value="video">Edición de Video</option>
+                                    <option value="images">Retoque de Imágenes</option>
+                                    <option value="motion">Motion Graphics</option>
+                                    <option value="spots">Spots Publicitarios</option>
+                                    <option value="branding">Branding Audiovisual</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Presupuesto Estimado</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Seleccionar rango...</option>
+                                    <option value="300-600">USD $300 - $600</option>
+                                    <option value="600-1000">USD $600 - $1,000</option>
+                                    <option value="1000-2000">USD $1,000 - $2,000</option>
+                                    <option value="2000+">USD $2,000+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Descripción del Proyecto *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Cuéntanos sobre tu proyecto, objetivos y timeline..."></textarea>
+                            </div>
+
+                            <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                                Enviar Solicitud
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div>
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem;">Vizion S.A.</h4>
+                    <p>Productora audiovisual especializada en contenidos que emocionan, informan y convierten.</p>
+                </div>
+                <div>
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem;">Servicios</h4>
+                    <p>Edición de Video • Retoque de Imágenes<br>
+                    Motion Graphics • Spots Publicitarios<br>
+                    Branding Audiovisual</p>
+                </div>
+                <div>
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem;">Contacto</h4>
+                    <p>Guatemala 5501, Palermo<br>
+                    Buenos Aires, Argentina<br>
+                    Fundada en 2025</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 1rem; margin-top: 2rem;">
+                <p>&copy; 2025 Vizion S.A. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('¡Gracias por tu solicitud! Nos pondremos en contacto contigo en las próximas 24 horas para discutir tu proyecto.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add smooth scrolling and animations on scroll
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.service-card, .team-member');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize cards with animation-ready state
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card, .team-member');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+            });
+            
+            // Trigger initial animation check
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
